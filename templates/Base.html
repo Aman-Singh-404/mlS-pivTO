@@ -1,0 +1,96 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,intial-scale=1.0">
+        {% block head %}
+        {% endblock %}
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Satisfy">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <link rel="icon" type="image/png" sizes="16x16" href="{% static 'logo.jpeg' %}">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+        <style>
+            #navbarmenu::after {
+                display: none;
+            }
+            .navbar-brand {
+                font-family: 'Satisfy', cursive;
+            }
+        </style>
+    </head>
+    <body>
+        <nav id="nav" class="navbar navbar-expand-md bg-dark navbar-dark">
+            <a class="navbar-brand" href="{% url 'homepage' %}">mlS pivTO</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            {% if login %}
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'account' %}"><i class="fas fa-user-cog"></i>&nbsp; Account Settings</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'directory' %}"><i class="fas fa-folder"></i>&nbsp; Directory Mode</a>
+                    </li>
+                </ul>
+                <form class="form-inline" method="post" action="{% url 'searchPost' %}">
+                    {% csrf_token %}
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search" value="{{ search }}">
+                    <button class="btn btn-success btn btn-default" type="submit"><i class="fas fa-search"></i></button>
+                </form>
+                <ul class="navbar-nav ml-auto">
+                    {% if dropdown %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown"></a>
+                        <div class="dropdown-menu dropdown-menu-right" style="background: rgb(245, 245, 245);">
+                            <div class="dropdown-header text-center">--Operational--</div> 
+                            <a class="dropdown-item" id="select" onclick="return selectAll();">Select All</a>
+                            <a class="dropdown-item" onclick="return redo();">Redo</a>
+                            <a class="dropdown-item" onclick="return undo();">Undo</a>
+                            <div class="dropdown-header text-center">--Transfer--</div> 
+                            <a class="dropdown-item" onclick="return move();">Move</a>
+                            <a class="dropdown-item" onclick="return copy();">Copy</a>
+                            <a class="dropdown-item" onclick="return paste();">Paste</a>
+                            <div class="dropdown-header text-center">--Attribute--</div> 
+                            <a class="dropdown-item" onclick="return rename();">Rename</a>
+                            <a class="dropdown-item" onclick="return remove();">Remove</a>
+                            <a class="dropdown-item" onclick="return hide();">
+                                <input class="hide_view" type="checkbox" style="vertical-align: middle;"><span style="vertical-align: middle;">&nbsp;Hidden view</span>
+                            </a>                         
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarmenu" data-toggle="dropdown"><i class="fa fa-plus"></i></a>
+                        <div class="dropdown-menu dropdown-menu-right" style="background: rgb(245, 245, 245);">
+                            <a class="dropdown-item" onclick='return newfolder(
+                                {% if parentall == '' %}
+                                "{% url 'newPost' %}", "{% url 'directory' %}"
+                                {% else %}
+                                "{% url 'newPost' parentall %}", "{% url 'directory' parentall %}"
+                                {% endif %}
+                                );'><i class="fas fa-folder-plus"></i>&nbsp; Folder</a>
+                            <a class="dropdown-item" onclick='return uploadfile(
+                                {% if parentall == '' %}
+                                "{% url 'uploadPost' %}", "{% url 'directory' %}"
+                                {% else %}
+                                "{% url 'uploadPost' parentall %}", "{% url 'directory' parentall %}"
+                                {% endif %}
+                            );'><i class="fas fa-file"></i>&nbsp; Upload</a>                      
+                        </div>
+                    </li>
+                    {% endif %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}"><i class="fas fa-power-off"></i>&nbsp; Logout</a>
+                    </li>
+                </ul>
+            </div>
+            {% endif %}
+        </nav>
+        {% block body %}
+        {% endblock %}
+    </body>
+</html>

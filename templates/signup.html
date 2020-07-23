@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'createAccount.css' %}">
+    <script src="{% static 'createAccount.js' %}"></script>
+</head>
+<body>
+    <section class="signup"><div class="container"><div class="signup-content">
+        <form class="signup-form" action="{% url 'signup' %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ request.GET.next }}">
+            <h2 clss="form-title">Create new account
+            <div id="alert" style="display:none"></div></h2>
+            <div class="form-group">
+                <input type="text" class="form-input" name="name" id="name" onclick="removeAlert(this);" placeholder="Your Name"/>
+            </div>
+            <div class="form-group">
+                <input type="email" class="form-input" name="email" id="email" onclick="removeAlert(this);" placeholder="Your Email"/>
+            </div>
+            <div class="form-group">
+                <input type="tel" class="form-input" name="phone" id="phone" pattern="[0-9]{3} [0-9]{3} [0-9]{4}" onclick="removeAlert(this);" oninput="addSpaces();" placeholder="Your Phone Number"/>
+            </div>
+            <div class="input-group"><label class="label">Gender:</label><div class="p-t-10">
+                <label class="radio-container m-r-45">Male<input type="radio" checked="checked" value="M" name="gender">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="radio-container">Female<input type="radio" value="F" name="gender">
+                    <span class="checkmark"></span>
+                </label>
+            </div></div>
+            <div class="form-group">
+                <input type="password" class="form-input" name="password" id="password" onclick="removeAlert(this);" oninput="checkPassword(this, document.getElementById('re_password'));" onblur="validatePassword('{% url "passwordValidation" %}');" placeholder="Password"/>
+                <span class="field-icon" onclick="changeIcon();"><i id="icon" class="far fa-eye-slash"></i></span>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-input" name="re_password" id="re_password" onclick="removeAlert(this);" oninput="checkPassword(this, document.getElementById('password'));" placeholder="Repeat your password"/>
+            </div>
+            <div class="form-group">
+                <input type="submit" name="submit" id="submit" class="form-submit" onclick="return showValidate();" value="Sign up"/>
+            </div>
+        </form>
+        <p class="loginhere">Have already an account ? <a href="{% url 'homepage' %}" class="loginhere-link">Login here</a></p>
+    </div></div></section>
+</body>
+</html>

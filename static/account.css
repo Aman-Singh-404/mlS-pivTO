@@ -1,0 +1,133 @@
+a, a:visited, a:hover, a:active {
+    color: rgb(82, 82, 255);;
+}
+.head0 {
+    padding: 1.08% 2.16%;
+}
+.head1 {
+    margin: 0;
+    padding: 8px;
+    font-weight: 400;
+    font-size: 13px;
+    text-align: left;
+    background: #79aec8;
+    color: #fff;
+    font-family: "Roboto","Lucida Grande","DejaVu Sans","Bitstream Vera Sans",Verdana,Arial,sans-serif;
+}
+.part-div {
+    overflow: hidden;
+    padding: 10px;
+    font-size: 13px;
+    border-bottom: 1px solid #eee;
+    font-family: "Roboto","Lucida Grande","DejaVu Sans","Bitstream Vera Sans",Verdana,Arial,sans-serif;
+    color: #333;
+    font-weight: normal;
+}
+.part-label {
+    display: block;
+    padding: 4px 10px 0 0;
+    float: left;
+    width: 160px;
+    word-wrap: break-word;
+    line-height: 1;
+    color: #666;
+}
+.part-input {
+    color: #333;
+    font-family: "Roboto", "Lucida Grande", Verdana, Arial, sans-serif;
+    font-weight: normal;
+    margin: 2px 0;
+    width: 293.33px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 5px 6px;
+    margin-top: 0;
+    margin-bottom: 0;
+    vertical-align: middle;
+}
+.submit-row {
+    padding: 12px 14px;
+    margin: 0 0 20px;
+    background: #f8f8f8;
+    border: 1px solid #eee;
+    text-align: right;
+    overflow: hidden;
+    font-size: 14px;
+    font-family: "Roboto","Lucida Grande","DejaVu Sans","Bitstream Vera Sans",Verdana,Arial,sans-serif;
+    color: #333;
+    line-height: 15px;
+}
+.save {
+    margin-top: 3px;
+    margin-left: 4px;
+    text-transform: uppercase;
+    float: right;
+    border: none;
+    border-radius: 4px;
+    font-weight: 400;
+    background: #417690;
+    height: 35px;
+    padding: 10px 15px;
+    color: #fff;
+    cursor: pointer;
+    font-family: "Roboto", "Lucida Grande", Verdana, Arial, sans-serif;
+    font-size: 13px;
+}
+.discard {
+    margin-bottom: 0.7px;
+    margin-right: 4px;
+    display: block;
+    background: #ba2121;
+    padding: 10px 15px;
+    border-radius: 4px;    
+    color: #fff;
+    float: right;
+}
+.edit-btn{
+    border: none;
+    padding: 7px;
+    background-color: inherit;
+}
+.edit-btn:hover{
+    color: rgb(121, 121, 121);
+}
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%;
+    min-height: 150px;
+}
+.close {
+    color: black;
+    float: right;
+    font-size: 28px;
+    padding-right: 5px;
+    font-weight: bold;
+}
+.close:hover{
+    color: rgb(138, 138, 138);
+    text-decoration: none;
+    cursor: pointer;
+}
+@media (max-width: 535px) {
+    .part-input {
+        width:87%
+    }
+    .part-label{
+        width: 70%;
+    }
+}

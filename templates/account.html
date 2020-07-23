@@ -1,0 +1,94 @@
+{% extends "Base.html" %}
+{% load static %}
+{% block head %}
+    <title>mlS pivTO</title>
+    <meta name="keywords" content="mlS, pivTO, Directory, mode">
+    <link rel="stylesheet" type="text/css" href="{% static 'account.css' %}">
+    <script src="{% static 'account.js' %}"></script>
+{% endblock %}
+{% block body %}
+    <div class="head0">
+        <h3 style="margin-bottom: 1.08%;">Change user</h3>
+        <h4 class="head1">User info</h4>
+        <div class="part-div">
+            <label for="id_username" class="part-label">User ID:</label>
+            <input type="text" name="username" class="part-input" maxlength="150" id="id_username">
+        </div>
+        <div class="part-div">
+            <label for="id_password" class="part-label">Password:</label>
+            <input type="text" name="password" class="part-input" maxlength="150" id="id_password">
+            <button type="button" class="edit-btn fa fa-edit" onclick="openModal0();"></button>
+        </div>
+        <h4 class="head1">Personal info</h4>
+        <div class="part-div">
+            <label for="id_first_name" class="part-label">First name:</label>
+            <input type="text" name="first_name" class="part-input" maxlength="30" id="id_first_name">
+            <button type="button" class="edit-btn fa fa-edit" onclick="document.getElementById('id_first_name').disabled = false;"></button>
+        </div>
+        <div class="part-div">
+            <label for="id_last_name" class="part-label">Last name:</label>
+            <input type="text" name="last_name" class="part-input" maxlength="150" id="id_last_name">
+            <button type="button" class="edit-btn fa fa-edit" onclick="document.getElementById('id_last_name').disabled = false;"></button>
+        </div>
+        <div class="part-div">
+            <label for="id_email" class="part-label">Email address:</label>
+            <input type="email" name="email" class="part-input" maxlength="254" id="id_email">
+            <button type="button" class="edit-btn fa fa-edit" onclick="document.getElementById('id_email').disabled = false;"></button>
+        </div>
+        <div class="part-div">
+            <label for="id_email" class="part-label">Email address:</label>
+            <input type="email" name="email" class="part-input" maxlength="254" id="id_email">
+            <button type="button" class="edit-btn fa fa-edit" onclick="document.getElementById('id_email').disabled = false;"></button>
+        </div>
+        <div class="part-div">
+            <label for="id_mobile" class="part-label">Mobile Number:</label>
+            <input type="tel" name="mobile" class="part-input" maxlength="254" id="id_mobile" pattern="[0-9]{3} [0-9]{3} [0-9]{4}>
+            <button type="button" class="edit-btn fa fa-edit" onclick="document.getElementById('id_mobile').disabled = false;"></button>
+        </div>
+        <div class="submit-row">
+            <input type="button" value="Save" class="save" name="save" onclick='changeDetails("{% url 'saveCredentails' %}");'>
+            <input type="button" value="Discard" class="discard" name="discard" onclick='window.location=("{% url 'directory' %}")'>
+        </div>
+    </div>
+    <div id="myModal0" class="modal"><div class="modal-dialog"><div class="modal-content"><span class="close">&times;</span>
+        <h4 class="head1">Change password</h4>
+        <div class="part-div">
+            <label for="old_password" class="part-label">Old Password:</label>
+            <input type="password" class="part-input" maxlength="150" id="old_password">
+        </div>
+        <div class="part-div">
+            <label for="new_password" class="part-label">New Password:</label>
+            <input type="password" class="part-input" maxlength="150" id="new_password">
+        </div>
+        <div class="part-div">
+            <label for="new_re_password" class="part-label">Re-enter New Password:</label>
+            <input type="password" class="part-input" maxlength="150" id="new_re_password">
+        </div>
+        <div class="submit-row">
+            <input type="button" value="Change" class="save" name="save" onclick='changePassword("{% url 'savePassword' %}");'>
+        </div>
+    </div></div></div>
+    <div id="myModal1" class="modal"><div class="modal-content"><h4 class="head1">Message</h4>
+        <div class="part-div"><label class="part-label" id="response"></label></div>
+        <input type="button" value="Ok" class="save" onclick="document.getElementById('myModal1').style.display='none';">
+    </div></div>
+    <script>
+        window.onload = function () {
+            var uname = document.getElementById("id_username");
+            uname.disabled = true;
+            uname.value = "{{ username }}";
+            var password = document.getElementById("id_password");
+            password.disabled = true;
+            password.value = "{{ password }}";
+            var fname = document.getElementById("id_first_name");
+            fname.disabled = true;
+            fname.value = "{{ firstname }}";
+            var lname = document.getElementById("id_last_name");
+            lname.disabled = true;
+            lname.value = "{{ lastname }}";
+            var email = document.getElementById("id_email");
+            email.disabled = true;
+            email.value = "{{ email }}";
+        }
+    </script>
+{% endblock %}

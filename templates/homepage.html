@@ -1,0 +1,52 @@
+{% extends "Base.html" %}
+{% load static %}
+{% block head %}
+    <title>mlS pivTO-Directory mode</title>
+    <meta name="keywords" content="mlS,pivTO,Directory,mode">
+    <link rel="stylesheet" type="text/css" href="{% static 'home.css' %}">
+    <script src="{% static 'home.js' %}"></script>
+{% endblock %}
+{% block body %}
+    <div class="limiter flew_h"><div class="container-login100 flew_h"><div class="wrap-login100 flew_h">
+            {% if login %}
+                <div class="login100-form validate-form" style="word-wrap: break-word;">
+                    What is Lorem Ipsum?<br><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the 
+                    industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type 
+                    specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially 
+                    unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently 
+                    with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.<br>Why do we use it?
+                </div>
+            {% else %}
+                <div class="central"><form class="login100-form validate-form" method="POST" action="{% url 'login' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ request.GET.next }}">
+                    <span class="login100-form-title p-b-43">Login to continue<div id="alert" style="display: {{ display }};">
+                        {{ message }}
+                    </div></span>
+                    <div class="wrap-input100 validate-input" data-validate="Valid email is required: abc@ex.xyz">
+                        <input class="input100" type="text" name="email" onblur="report(this);" onchange="report(this);" onfocus="hideValidate(this);">
+                        <span class="focus-input100"></span><span class="label-input100">Email</span>
+                    </div>
+                    <div class="wrap-input100 validate-input" data-validate = "Valid Password is required">
+                        <input class="input100" type="password" name="psw" onblur="report(this);" onchange="report(this);" onfocus="hideValidate(this);">
+                        <span class="focus-input100"></span><span class="label-input100">Password</span>
+                    </div>
+                    <div class="wrap-input100 validate-input" data-validate = "Valid Password is required">
+                        <input class="input100" type="password" name="psw" onblur="report(this);" onchange="report(this);" onfocus="hideValidate(this);">
+                    </div>
+                    <div class="container-login100-form-btn">
+                        <button type="submit" class="login100-form-btn" onclick="return showValidate();">Login</button>
+                    </div>
+                    <p class="loginhere">Want a new account ? <a href="{% url 'createAccount' %}" class="loginhere-link">Signup here</a></p>
+                </form></div>
+            {% endif %}
+        <div class="login100-more">
+            <div style="font-size: 5rem; font-weight: 700; text-align: center; overflow-wrap: break-word;">Store. Use. Reuse</div>
+            <div style="font-size: 2.5rem; font-weight: 200; text-align: center;">Introducing<br>New Cloud Storage</div>
+        </div>
+    </div></div></div>
+    <script>
+        adjust();
+        document.getElementsByName("email")[0].focus();
+    </script>
+{% endblock %}

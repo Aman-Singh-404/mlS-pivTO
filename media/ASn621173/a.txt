@@ -1,0 +1,60 @@
+        #Commands for wifi drivers.
+
+git clone https://github.com/lwfinger/rtlwifi_new.git
+cd rtlwifi_new/
+git checkout extended
+sudo make install
+sudo modprobe -r rtl8723de
+sudo modprobe rtl8723de
+
+        #Commands to install some-app.run file.
+
+cd <location>
+chmod +x some-app.run
+sudo ./some-app.run
+
+        #Commands to install file.tar.gz file.
+
+tar -zxvf file.tar.gz
+cd file
+//Read the file INSTALL and/or README to know if you need some dependencies.
+./configure
+make
+sudo make install
+
+        #Commands to install some-app.deb file.
+
+sudo dpkg -i DEB_PACKAGE
+
+        #Commands to remove some-app.deb file.
+
+sudo dpkg -r DEB_PACKAGE
+
+        #Commands to install yourscript.sh file.
+
+chmod +x yourscript.sh
+./yourscript.sh
+
+        #Commands to install file.bin file.
+
+chmod a+x file.bin
+sudo ./file.bin
+
+        #Commands to remove  <application_name> application.
+
+sudo apt-get remove <application_name>
+
+        #Commands to view all installed packages.
+
+apt list --installed
+
+        #Commands to clean
+
+sudo apt-get autoclean
+sudo apt-get autoremove
+
+        #Commands to install kivy
+sudo add-apt-respository ppa:kivy-team/kivy
+sudo apt-get update
+sudo apt-get install python3-kivy
+

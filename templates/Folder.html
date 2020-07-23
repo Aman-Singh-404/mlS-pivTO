@@ -1,0 +1,46 @@
+{% extends "Base.html" %}
+{% load static %}
+{% block head %}
+    <title>mlS pivTO-Directory mode</title>
+    <meta name="keywords" content="mlS, pivTO,Directory,mode">
+    <link rel="stylesheet" type="text/css" href="{% static 'directory.css' %}">
+    <script src="{% static 'directory.js' %}"></script>
+{% endblock %}
+{% block body %}
+    <div class="dirlist" id="{{ parentall }}">
+        <button type="button" class="movebtn" onclick="history.back()"><i class="fas fa-angle-left"></i></button>
+        <button type="button" class="movebtn" onclick="history.forward()"><i class="fas fa-angle-right"></i></button>
+        <a style="text-decoration: none;" href="{% url 'directory' %}"><i class="fas fa-home" style="color: black;"></i> Home</a>
+        {% for link,prt in parentlink %}
+            <a style="text-decoration: none;" href="{{ link }}">/{{prt }}</a>
+        {% endfor %}
+    </div>
+    <div style="margin: 50px; overflow: auto;">
+        <table id="dirtable">
+            <tr>
+                <th><button type="button" class="outer" onclick="createTable(0)">Name <i id="name" class="fas fa-arrow-down"></i></button></th>
+                <th><button type="button" class="outer" onclick="createTable(1)">Size <i id="size"></i></button></th>
+                <th><button type="button" class="outer" onclick="createTable(2)">Type <i id="type"></i></button></th>
+            </tr>
+            <tbody id="tb">
+            </tbody>
+        </table>
+    </div>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Choose file</p>
+            <input type="file" multiple="multiple" name="upload" id="newfile" onchange="execute()">
+        </div>
+    </div>
+    <script>
+        {% for directory in directories %}
+            {% if parentall == '' %}
+                addRow("{{ directory.name }}", "{% url 'directory' parentall|add:directory.name %}", {{ directory.size }}, "{{ directory.type }}");
+            {% else %}
+                addRow("{{ directory.name }}", "{% url 'directory' parentall|add:'/'|add:directory.name %}", {{ directory.size }}, "{{ directory.type }}");
+            {% endif %}
+        {% endfor %}
+        createTable(0);
+    </script>
+{% endblock %}
