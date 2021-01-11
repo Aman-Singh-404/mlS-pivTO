@@ -7,7 +7,7 @@ from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.shortcuts import render
 from django.urls import reverse
 from django.contrib.auth.password_validation import validate_password
-from user.models import CustomUser
+from user.models import UserProfile
 
 home = "media"
 message = ""

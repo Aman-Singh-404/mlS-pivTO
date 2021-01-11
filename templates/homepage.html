@@ -3,8 +3,8 @@
 {% block head %}
     <title>mlS pivTO-Directory mode</title>
     <meta name="keywords" content="mlS,pivTO,Directory,mode">
-    <link rel="stylesheet" type="text/css" href="{% static 'home.css' %}">
-    <script src="{% static 'home.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+    <script src="{% static 'js/home.js' %}"></script>
 {% endblock %}
 {% block body %}
     <div class="limiter flew_h"><div class="container-login100 flew_h"><div class="wrap-login100 flew_h">
@@ -30,9 +30,6 @@
                     <div class="wrap-input100 validate-input" data-validate = "Valid Password is required">
                         <input class="input100" type="password" name="psw" onblur="report(this);" onchange="report(this);" onfocus="hideValidate(this);">
                         <span class="focus-input100"></span><span class="label-input100">Password</span>
-                    </div>
-                    <div class="wrap-input100 validate-input" data-validate = "Valid Password is required">
-                        <input class="input100" type="password" name="psw" onblur="report(this);" onchange="report(this);" onfocus="hideValidate(this);">
                     </div>
                     <div class="container-login100-form-btn">
                         <button type="submit" class="login100-form-btn" onclick="return showValidate();">Login</button>

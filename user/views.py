@@ -53,3 +53,6 @@ def savePassword(request):
         return HttpResponse("Password changed.")
     else:
         return HttpResponse("Incorrect password.")
+
+def test(request):
+    return render(request, 'signup.html', {})
